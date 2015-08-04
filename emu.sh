@@ -1,4 +1,8 @@
 #!/bin/bash
+yad --center --width=400 --height=100 --title= "AVISO" \  --text="Execute usando o comando  ' sudo ' \ 
+ou o logado com usuário ' root ' para executar este software! "  --button=gtk-ok:0
+exit 1
+fi
 
 INSTALL=$(yad --center --form --width=400 --height=500 --title "Instalar Emuladores, Jogos e Steam" \
  --field "Atari:CHK" \
