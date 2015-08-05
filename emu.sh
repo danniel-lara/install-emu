@@ -4,6 +4,30 @@ ou o logado com usuário ' root ' para executar este software! "  --button=gtk-o
 exit 1
 fi
 
+yad --center --width=400 --height=100 --text="Caso não tenha respositórios necessários como RPMFusion o mesmo irá instalar " --button=gtk-ok:0
+
+ls /etc/yum.repos.d/ > /tmp/repo
+rpmfusion=$(grep rpmfusion /tmp/repo )
+home=$(grep home /tmp/repo )
+
+if [ -n "$rpmfusion" ] ;
+then 
+     yad --center --width=400 --height=100 --text="Rpmfusion já instaldo" --button=gtk-ok:0
+else
+   dnf -y --nogpgcheck install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+   dnf -y --nogpgcheck install http://download1.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+fi
+
+if [ -n "$home" ] ;
+ then
+ yad --center --width=400 --height=100 --text="Repositório Emulador WII já instaldo" --button=gtk-ok:0
+else
+ cd /etc/yum.repos.d/
+ wget http://download.opensuse.org/repositories/home:/KAMiKAZOW:/Fedora/Fedora_22/home:KAMiKAZOW:Fedora.repo
+exit 1
+fi
+
 INSTALL=$(yad --center --form --width=400 --height=500 --title "Instalar Emuladores, Jogos e Steam" \
  --field "Atari:CHK" \
  --field "Nes:CHK" \
