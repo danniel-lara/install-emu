@@ -114,7 +114,7 @@ fi
 fi
 
  if [ "$WII" = "TRUE" ]; then
-    dnf install dolphin-emu-git -y
+    dnf install dolphin-emu dolphin-emu-lang.noarch dolphin-emu-nogui -y
 fi
 
  if [ "$MAME" = "TRUE" ]; then
